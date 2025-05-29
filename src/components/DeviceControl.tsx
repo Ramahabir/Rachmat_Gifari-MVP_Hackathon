@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -107,19 +106,21 @@ export const DeviceControl: React.FC = () => {
   };
 
   const updateTemperature = (deviceId: string, temperature: number) => {
-    setDevices(devices.map(device => 
-      device.id === deviceId 
-        ? { ...device, temperature }
-        : device
-    ));
+    setDevices(devices.map(device => {
+      if (device.id === deviceId && 'temperature' in device) {
+        return { ...device, temperature } as ACDevice;
+      }
+      return device;
+    }));
   };
 
   const updateBrightness = (deviceId: string, brightness: number) => {
-    setDevices(devices.map(device => 
-      device.id === deviceId 
-        ? { ...device, brightness }
-        : device
-    ));
+    setDevices(devices.map(device => {
+      if (device.id === deviceId && 'brightness' in device) {
+        return { ...device, brightness } as LightDevice;
+      }
+      return device;
+    }));
   };
 
   const totalPowerUsage = devices
