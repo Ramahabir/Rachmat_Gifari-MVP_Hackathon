@@ -5,10 +5,40 @@ import { Button } from '@/components/ui/button';
 import { Switch } from '@/components/ui/switch';
 import { Slider } from '@/components/ui/slider';
 import { Badge } from '@/components/ui/badge';
-import { AirVent, Tv, Lightbulb, Refrigerator, Washing, Coffee, Fan, Thermometer } from 'lucide-react';
+import { AirVent, Tv, Lightbulb, Refrigerator, WashingMachine, Coffee, Fan, Thermometer } from 'lucide-react';
+
+interface BaseDevice {
+  id: string;
+  name: string;
+  icon: React.ComponentType<any>;
+  isOn: boolean;
+  power: number;
+  controllable: boolean;
+  priority: string;
+}
+
+interface ACDevice extends BaseDevice {
+  temperature: number;
+  mode: string;
+  brightness?: never;
+}
+
+interface LightDevice extends BaseDevice {
+  brightness: number;
+  temperature?: never;
+  mode?: never;
+}
+
+interface OtherDevice extends BaseDevice {
+  temperature?: never;
+  mode?: never;
+  brightness?: never;
+}
+
+type Device = ACDevice | LightDevice | OtherDevice;
 
 export const DeviceControl: React.FC = () => {
-  const [devices, setDevices] = useState([
+  const [devices, setDevices] = useState<Device[]>([
     {
       id: 'ac-living',
       name: 'AC Ruang Tamu',
@@ -19,7 +49,7 @@ export const DeviceControl: React.FC = () => {
       temperature: 24,
       mode: 'cool',
       priority: 'high'
-    },
+    } as ACDevice,
     {
       id: 'tv-main',
       name: 'TV Utama',
@@ -28,7 +58,7 @@ export const DeviceControl: React.FC = () => {
       power: 150,
       controllable: true,
       priority: 'medium'
-    },
+    } as OtherDevice,
     {
       id: 'lights',
       name: 'Lampu Rumah',
@@ -38,7 +68,7 @@ export const DeviceControl: React.FC = () => {
       controllable: true,
       brightness: 80,
       priority: 'high'
-    },
+    } as LightDevice,
     {
       id: 'refrigerator',
       name: 'Kulkas',
@@ -47,16 +77,16 @@ export const DeviceControl: React.FC = () => {
       power: 300,
       controllable: false,
       priority: 'critical'
-    },
+    } as OtherDevice,
     {
       id: 'washing-machine',
       name: 'Mesin Cuci',
-      icon: Washing,
+      icon: WashingMachine,
       isOn: false,
       power: 800,
       controllable: true,
       priority: 'low'
-    },
+    } as OtherDevice,
     {
       id: 'coffee-maker',
       name: 'Coffee Maker',
@@ -65,7 +95,7 @@ export const DeviceControl: React.FC = () => {
       power: 1000,
       controllable: true,
       priority: 'low'
-    }
+    } as OtherDevice
   ]);
 
   const toggleDevice = (deviceId: string) => {
@@ -193,7 +223,7 @@ export const DeviceControl: React.FC = () => {
               {device.isOn && device.controllable && (
                 <CardContent>
                   {/* AC Temperature Control */}
-                  {device.id === 'ac-living' && (
+                  {device.id === 'ac-living' && 'temperature' in device && (
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-medium">Suhu</span>
@@ -203,7 +233,7 @@ export const DeviceControl: React.FC = () => {
                         </div>
                       </div>
                       <Slider
-                        value={[device.temperature || 24]}
+                        value={[device.temperature]}
                         onValueChange={(value) => updateTemperature(device.id, value[0])}
                         min={16}
                         max={30}
@@ -218,14 +248,14 @@ export const DeviceControl: React.FC = () => {
                   )}
 
                   {/* Light Brightness Control */}
-                  {device.id === 'lights' && (
+                  {device.id === 'lights' && 'brightness' in device && (
                     <div className="space-y-3">
                       <div className="flex items-center justify-between">
                         <span className="text-sm font-medium">Kecerahan</span>
                         <span className="text-sm font-bold">{device.brightness}%</span>
                       </div>
                       <Slider
-                        value={[device.brightness || 100]}
+                        value={[device.brightness]}
                         onValueChange={(value) => updateBrightness(device.id, value[0])}
                         min={10}
                         max={100}
