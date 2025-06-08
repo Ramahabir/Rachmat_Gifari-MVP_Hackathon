@@ -1,15 +1,16 @@
 # SuryaOptiAI 🌞⚡
 
 <div align="center">
-  <img src="https://raw.githubusercontent.com/Megumi-desu/Rachmat_Gifari-MVP_Hackathon/main/logo.png" alt="SuryaOptiAI Logo" width="200" height="200">
+  ![Image](https://github.com/user-attachments/assets/375df70c-c896-44ee-aaf7-487409a69555)
   
   **Sistem Monitoring dan Optimasi PLTS Berbasis AI dan IoT**
   
   *Mendukung Pemerataan Energi Bersih untuk Desa-desa di Indonesia*
   
-  [![Image](https://github.com/user-attachments/assets/375df70c-c896-44ee-aaf7-487409a69555)
+  [![Live Demo](https://img.shields.io/badge/Live%20Demo-surya--opti--ai.vercel.app-brightgreen)](https://surya-opti-ai.vercel.app/)
   [![Development](https://img.shields.io/badge/Development-Vercel-blue)](https://surya-opti-3wxji5p7b-rachmat-gifaris-projects.vercel.app/)
   [![Azure](https://img.shields.io/badge/Powered%20by-Microsoft%20Azure-0078d4)](https://azure.microsoft.com/)
+
 </div>
 
 ## 📋 Deskripsi Proyek
