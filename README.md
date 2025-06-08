@@ -1,7 +1,7 @@
 # SuryaOptiAI 🌞⚡
 
 <div align="center">
-  ![Image](https://github.com/user-attachments/assets/375df70c-c896-44ee-aaf7-487409a69555)
+  <img src=![Image](https://github.com/user-attachments/assets/375df70c-c896-44ee-aaf7-487409a69555) alt="SuryaOptiAI Logo" width="200" height="200">
   
   **Sistem Monitoring dan Optimasi PLTS Berbasis AI dan IoT**
   
