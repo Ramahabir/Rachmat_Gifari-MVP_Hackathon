@@ -186,7 +186,7 @@ Kami menyambut kontribusi dari developer, peneliti, dan stakeholder energi terba
 
 **Rachmat Gifari**
 - GitHub: [@Megumi-desu](https://github.com/Megumi-desu)
-- Email: [rachmat.gifari@email.com](mailto:rachmat.gifari@email.com)
+- Email: [rachmatgifari99@gmail.com](mailto:rachmatgifari99@gmail.com)
 
 ## 🏆 Hackathon Information
 
